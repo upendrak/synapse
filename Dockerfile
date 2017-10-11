@@ -1,13 +1,16 @@
-FROM ubuntu:14.04.3
-MAINTAINER Upendra Devisetty <upendra@cyverse.org>
-LABEL Description "This Dockerfile is used for Synapse Client 1.7.3"
+FROM ubuntu:16.04
+ENV PACKAGES python-dev git python-setuptools python-pip
 
-RUN apt-get update && apt-get install -y git python-pip python
-RUN pip install botocore
-RUN git clone git://github.com/Sage-Bionetworks/synapsePythonClient.git
-WORKDIR synapsePythonClient
-#RUN git checkout develop
-RUN python setup.py install
+ENV BRANCH=develop
+ENV VERSION=6ba6a3ebde81fe8ed4d0c231ab42c613aa03334f
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ${PACKAGES}
+
+RUN git clone -b ${BRANCH} git://github.com/Sage-Bionetworks/synapsePythonClient.git && \
+    cd synapsePythonClient && \
+    git checkout ${VERSION} && \
+    python setup.py develop
 
 ENTRYPOINT ["synapse"]
 CMD ["-h"]
