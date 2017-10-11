@@ -1,4 +1,4 @@
-### Synapse-1.6.1
+# Synapse-1.6.1
 
 ## Introduction
 A Python client for [Synapse](https://www.synapse.org/), a collaborative compute space that allows scientists to share and analyze data together. The Python client can be used as a library for development of software that communicates with Synapse or as a command-line utility.
