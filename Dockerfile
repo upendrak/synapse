@@ -1,4 +1,6 @@
 FROM ubuntu:16.04
+MAINTAINER Upendra Devisetty <upedra@cyverse.org>
+LABEL Description "This Dockerfile is for Synapse Client 1.6.1"
 ENV PACKAGES python-dev git python-setuptools python-pip
 
 ENV BRANCH=develop
