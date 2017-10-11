@@ -14,5 +14,8 @@ RUN git clone -b ${BRANCH} git://github.com/Sage-Bionetworks/synapsePythonClient
     git checkout ${VERSION} && \
     python setup.py develop
 
-ENTRYPOINT ["synapse"]
+ADD synapse_wrapper.sh /usr/bin
+RUN chmod +x /usr/bin/synapse_wrapper.sh
+
+ENTRYPOINT ["synapse_wrapper.sh"]
 CMD ["-h"]
